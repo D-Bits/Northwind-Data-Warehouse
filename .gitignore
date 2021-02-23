@@ -3,3 +3,4 @@
 airflow_settings.yaml
 env/
 __pycache__/
+.vscode/
