@@ -1,12 +1,12 @@
 """
-Create the Northwind OLTP database by restoring 
-from the provided .tar file.
+Create the Northwind OLTP, and OLAP databases.
 """
 from os import getenv
 from airflow.decorators import dag, task
 from datetime import datetime
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import psycopg2
+import subprocess
 
 
 default_args = {
@@ -24,7 +24,13 @@ pg_cred = {
 }
 
 # Open a connection
-conn = psycopg2.connect(dbname=pg_cred['db'], user=pg_cred['user'], password=pg_cred['pass'], host=pg_cred['host'], port=5432)
+conn = psycopg2.connect(
+    dbname=pg_cred['db'], 
+    user=pg_cred['user'], 
+    password=pg_cred['pass'], 
+    host=pg_cred['host'], 
+    port=5432
+)
 
 # Allow creation of databases via Python
 conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
@@ -33,25 +39,24 @@ conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
 cur = conn.cursor()
 
 @dag(default_args=default_args, schedule_interval=None, start_date=None)
-def create_northwind():
+def create_databases():
 
-    # Create an empty db to restore to
+    # Create an empty db to restore the Northwind OLTP database
     @task()
-    def create():
+    def create_oltp():
 
-        return cur.execute("CREATE DATABASE northwind;"), cur.commit()
+        return cur.execute("CREATE DATABASE northwind;")
 
 
-    # Restore the database
+    # Create an empty db to restore the Northwind OLAP database
     @task()
-    def restore(create_task):
+    def create_olap(oltp_task):
 
-        return cur.execute("pg_restore -h localhost northwind < ./sql/northwind.tar;"), cur.commit()
+        return cur.execute("CREATE DATABASE northwind_dw;")
 
 
-    create_db = create()
-    restore(create_db)
-    
+    create_oltp = create_oltp()
+    create_olap(create_oltp)
 
-create_northwind_dag = create_northwind()
 
+create_northwind_dag = create_databases()
