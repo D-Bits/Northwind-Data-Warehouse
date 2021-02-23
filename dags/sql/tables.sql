@@ -5,4 +5,8 @@
 
 
 -- 
-
+CREATE TABLE fact_orders
+(
+	id SERIAL,
+	
+);
