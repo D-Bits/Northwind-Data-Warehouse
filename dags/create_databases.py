@@ -5,6 +5,7 @@ from os import getenv
 from airflow.decorators import dag, task
 from datetime import datetime
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+from .credentials import oltp_conn
 import psycopg2
 
 
@@ -14,28 +15,12 @@ default_args = {
     "retries": 1,
 }
 
-# Define credentials for Postgres database as a dict
-pg_creds = {
-    'db': getenv("POSTGRES_DB"),
-    'user': getenv("POSTGRES_USER"),
-    'pass': getenv("POSTGRES_PASSWORD"),
-    'host': getenv("POSTGRES_HOST")
-}
-
-# Open a connection
-conn = psycopg2.connect(
-    dbname=pg_creds['db'], 
-    user=pg_creds['user'], 
-    password=pg_creds['pass'], 
-    host=pg_creds['host'], 
-    port=5432
-)
 
 # Allow creation of databases via Python
-conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
+oltp_conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
 
 # Create a cursor for running queries
-cur = conn.cursor()
+cur = oltp_conn.cursor()
 
 @dag(default_args=default_args, schedule_interval=None, start_date=None)
 def create_databases():
@@ -52,7 +37,7 @@ def create_databases():
     def create_olap(oltp_task):
 
         # Close the connection after creating the OLAP db
-        return cur.execute("CREATE DATABASE northwind_dw;"), conn.close()
+        return cur.execute("CREATE DATABASE northwind_dw;"), oltp_conn.close()
 
 
     create_oltp = create_oltp()
