@@ -5,7 +5,7 @@ A data warehouse for the well-known Northwind OLTP database. Built with Apache A
 
 ## Local Setup
 
-- First, you will need to install the [Astronomer CLI](https://www.astronomer.io/docs/cloud/stable/develop/cli-quickstart#apply-changes-to-your-airflow-project) on your machine.
+- First, you will need to install the [Astronomer CLI](https://www.astronomer.io/docs/cloud/stable/develop/cli-quickstart) on your machine.
 
 - You will also need Docker (including Docker Compose) installed before you begin.
 
