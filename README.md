@@ -18,7 +18,6 @@ A data warehouse for the well-known Northwind OLTP database. Built with Apache A
     POSTGRES_USER=postgres 
     POSTGRES_PASSWORD=(your password for the db)
     POSTGRES_DB=postgres
-    # SQL Alchemy string for OLTP DB 
     OLTP_STRING=(SQL Alchemy string for the OLTP Northwind database)
     OLAP_STRING=(SQL Alchemy string for the OLAP Northwind data warehouse)
     ```
