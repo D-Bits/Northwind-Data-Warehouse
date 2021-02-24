@@ -2,6 +2,7 @@
 Helper file to load Postgres credentials and 
 connections from.
 """
+from sqlalchemy import create_engine
 from os import getenv
 import psycopg2
 
@@ -27,6 +28,9 @@ oltp_conn = psycopg2.connect(
     port=5432
 )
 
+# Define a SQL Alchemy engine for the OLTP db
+oltp_engine = create_engine(getenv("OLTP_STRING"))
+
 """
 OLAP database configs
 """
@@ -47,3 +51,6 @@ olap_conn = psycopg2.connect(
     host=olap_creds['host'], 
     port=5432
 )
+
+# Define a SQL Alchemy engine for the OLAP db
+olap_engine = create_engine(getenv("OLAP_STRING"))
