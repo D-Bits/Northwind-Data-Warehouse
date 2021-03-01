@@ -8,7 +8,7 @@ init:
 
 # Bootstrap servers
 start:
-	sudo astro dev start
+	sudo astro dev start --env .env
 
 # Shutdown servers
 stop:
@@ -22,12 +22,12 @@ restore:
 # Reset dev environment
 reset:
 	sudo astro dev kill
-	sudo astro dev start
+	sudo astro dev start --env .env
 
 # Restart dev environment
 restart:
 	sudo astro dev stop
-	sudo astro dev start
+	sudo astro dev start --env .env
 
 # Start a psql shell in the postgres container
 psql:
@@ -39,6 +39,11 @@ rebuild:
 	sudo python3 -m venv env
 	source env/bin/activate; \
 	pip3 install -r requirements.txt
+
+# Pin dependencies to requirements.txt
+pin:
+	source env/bin/activate; \
+	pip3 freeze > requirements.txt	
 
 # Deploy to Astronomer Cloud
 deploy:
