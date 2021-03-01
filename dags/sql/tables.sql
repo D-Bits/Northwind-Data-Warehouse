@@ -16,6 +16,7 @@ CREATE TABLE fact_orders
 	requireddate DATE NOT NULL,
 	orderdate DATE NOT NULL,
 	shippeddate DATE NOT NULL, 
+	shipvia INT,
 	freight INT,
 	shipname VARCHAR(255) NOT NULL,
 	shipaddress VARCHAR(255) NOT NULL,
