@@ -27,3 +27,5 @@ A data warehouse for the well-known Northwind OLTP database. Built with Apache A
 `northwind_dw`.  
 
 - Then, navigate to [localhost:8080](localhost:8080) in your browser.
+
+## DAG Guide
