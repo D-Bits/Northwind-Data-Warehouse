@@ -23,9 +23,10 @@ A data warehouse for the well-known Northwind OLTP database. Built with Apache A
     ```
 
 - Once you have both of those installed, simply run `sudo astro dev start` from the project root directory to boostrap the Docker containers.
-- After the containers have bootstraped, login to the Postgres server with a client of your choice, and create two databases: `northwind`, and
-`northwind_dw`.  
-
+- After the containers have bootstraped, login to the Postgres server with a client of your choice, and create two databases: `northwind`, and `northwind_dw`. Then, run `sh restore.sh`, enter the password you used for the `POSTGRES_PASSWORD` environment variable in the `.env` file.  
 - Then, navigate to [localhost:8080](localhost:8080) in your browser.
 
+
 ## DAG Guide
+
+
