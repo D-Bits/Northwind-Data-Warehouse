@@ -26,8 +26,9 @@ def seed_order_fact():
         orders_df = pd.read_sql_table("orders", oltp_engine, index_col="orderid")
         # Load "order_details" table into DataFrame
         details_df = pd.read_sql_table("order_details", oltp_engine, index_col="orderid")
+        dfs = [orders_df, details_df]
 
-        return list([orders_df, details_df])
+        return dfs
 
 
     # Clean dataframes, and merge them into one df
@@ -40,7 +41,7 @@ def seed_order_fact():
 
     
     @task()
-    def load(cleaned_df: pd.DataFrame):
+    def load(cleaned_df: pd.Series):
 
         cleaned_df.to_sql(
             'fact_orders', 
