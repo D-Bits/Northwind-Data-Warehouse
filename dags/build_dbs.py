@@ -23,14 +23,8 @@ dag = DAG(
 
 with dag:
 
-    # Run script to restore the Northwind db from tar file.
-    t1 = BashOperator(
-        task_id="restore", 
-        bash_command="restore.sh", 
-    )
-
     # Create tables for OLAP db
-    t2 = PostgresOperator(
+    t1 = PostgresOperator(
         task_id="create_tables", 
         sql="tables.sql", 
         database="northwind_dw", 
@@ -38,4 +32,4 @@ with dag:
         autocommit=True
     )
 
-    t1 >> t2 
+    t1 
