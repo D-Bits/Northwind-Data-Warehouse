@@ -7,7 +7,8 @@ A data warehouse for the well-known Northwind OLTP database. Built with Apache A
 
 - First, clone the repository.
 
-- Second, you will need to install the [Astronomer CLI](https://www.astronomer.io/docs/cloud/stable/develop/cli-quickstart) on your machine.
+- Second, you will need to install both the [Astronomer CLI](https://www.astronomer.io/docs/cloud/stable/develop/cli-quickstart) on your machine,
+  as well as `psql`.
 
 - You will also need Docker (including Docker Compose) installed before you begin.
 
