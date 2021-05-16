@@ -5,7 +5,9 @@ A data warehouse for the well-known Northwind OLTP database. Built with Apache A
 
 ## Local Setup
 
-- First, you will need to install the [Astronomer CLI](https://www.astronomer.io/docs/cloud/stable/develop/cli-quickstart) on your machine.
+- First, clone the repository.
+
+- Second, you will need to install the [Astronomer CLI](https://www.astronomer.io/docs/cloud/stable/develop/cli-quickstart) on your machine.
 
 - You will also need Docker (including Docker Compose) installed before you begin.
 
@@ -29,4 +31,4 @@ OLAP_STRING=(SQL Alchemy string for the OLAP Northwind data warehouse)
 
 ## DAG Guide
 
-
+- `db_init`: DAG to initialize OLTP and OLAP databases.
