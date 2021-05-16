@@ -18,8 +18,8 @@ stop:
 
 # Restore the Northwind OLTP database
 restore:
-	sudo docker exec -it northwinddwad7581_postgres_1 psql -U postgres \
-	pg_restore --dbname=northwind dags/sql/northwind.tar
+	sudo docker exec -it northwinddatawarehouseb117f0 psql -U postgres \
+	pg_restore --dbname=northwind northwind.tar
 
 # Reset dev environment
 reset:
