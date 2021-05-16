@@ -3,8 +3,10 @@ SHELL := /bin/bash
 
 # Initialize project
 init:
-	sudo python3 -m venv env
-	sudo astro dev start
+	python3 -m venv env
+	source env/bin/activate; \
+	pip3 install -r requirements.txt
+	sudo astro dev init
 
 # Bootstrap servers
 start:
