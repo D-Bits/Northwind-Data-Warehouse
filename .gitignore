@@ -5,5 +5,5 @@ env/
 __pycache__/
 .vscode/
 .dbeaver/
-testing.ipynb
+testing.py
 .pgpass
