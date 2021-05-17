@@ -8,10 +8,10 @@
 CREATE TABLE dim_products
 (
 	id SERIAL PRIMARY KEY,
-	unitsinstock INT NOT NULL,
-	unitsinorder INT NOT NULL,
+	unitsinstock INT,
+	unitsinorder INT,
 	reorderlevel INT,
-	discontinued INT NOT NULL
+	discontinued INT
 );
 
 -- Fact table for order data 
@@ -19,23 +19,23 @@ CREATE TABLE fact_orders
 (
 	-- From orders table
 	id SERIAL PRIMARY KEY,
-	order_id INT NOT NULL,
-	customer_id INT NOT NULL,
-	employeeid INT NOT NULL,
+	order_id INT,
+	customer_id INT,
+	employeeid INT,
 	productid INT NOT NULL REFERENCES dim_products(id),
-	requireddate DATE NOT NULL,
-	orderdate DATE NOT NULL,
-	shippeddate DATE NOT NULL, 
+	requireddate DATE,
+	orderdate DATE,
+	shippeddate DATE, 
 	shipvia INT,
 	freight INT,
-	shipname VARCHAR(255) NOT NULL,
-	shipaddress VARCHAR(255) NOT NULL,
-	shipcity VARCHAR(255) NOT NULL,
+	shipname VARCHAR(255),
+	shipaddress VARCHAR(255),
+	shipcity VARCHAR(255),
 	shipregion VARCHAR(4),
-	shippostalcode VARCHAR(10) NOT NULL,
-	shipcountry VARCHAR(15) NOT NULL,
+	shippostalcode VARCHAR(10),
+	shipcountry VARCHAR(15),
 	-- From order_details table
 	unitprice FLOAT,
-	quantity INT NOT NULL,
+	quantity INT,
 	discount INT
 );
